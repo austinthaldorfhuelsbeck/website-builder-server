@@ -32,4 +32,6 @@ function notFound(req: Request, res: Response) {
 	res.status(404).json({ message: `Not found: ${req.originalUrl}.` });
 }
 
-export { errorHandler, methodNotAllowed, notFound };
+const ErrorHandlers = { errorHandler, methodNotAllowed, notFound };
+
+export { ErrorHandlers };
