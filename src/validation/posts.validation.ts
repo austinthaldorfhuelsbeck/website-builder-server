@@ -40,7 +40,7 @@ function isValidPost(req: Request, res: Response, next: NextFunction) {
 async function postExists(req: Request, res: Response, next: NextFunction) {
 	// find post id in request
 	const id: string = req.params.post_id;
-	// break with 400 invalid request if no post topic id provided
+	// break with 400 invalid request if no post id provided
 	if (!id)
 		ErrorHandlers.errorHandler(
 			{

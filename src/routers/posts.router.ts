@@ -22,4 +22,5 @@ PostsRouter.route("/:post_id")
 	.delete(PostsController.delete)
 	.all(ErrorHandlers.methodNotAllowed);
 
+// Module exports
 export { PostsRouter };
