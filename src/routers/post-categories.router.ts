@@ -2,8 +2,8 @@
 import { Router } from "express";
 
 // Internal modules
-import { ErrorHandlers } from "../errors/errorHandler";
 import { PostCategoriesController } from "../controllers/post-categories.controller";
+import { ErrorHandlers } from "../errors/errorHandler";
 
 // Router definition
 const PostCategoriesRouter: Router = Router();

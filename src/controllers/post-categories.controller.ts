@@ -1,19 +1,21 @@
 // External modules
 import { Request, Response } from "express";
-import { IPostCategory } from "../interfaces/objects.interface";
 
 // Internal modules
 import { PostCategoriesService } from "../services/post-categories.service";
 import { PostCategoriesValidation } from "../validation/post-categories.validation";
 
+// Data models
+import { IPostCategory } from "../interfaces/objects.interface";
+
 // List controller definition
 // searches if request query exists
 async function list(req: Request, res: Response) {
-	const search: any = req.query.search;
-	const data: (IPostCategory | undefined)[] = search
-		? await PostCategoriesService.search(search.toString())
+	const query: any = req.query.search;
+	const data: (IPostCategory | undefined)[] = query
+		? await PostCategoriesService.search(query.toString())
 		: await PostCategoriesService.list();
-	res.json({ data });
+	res.status(200).json({ data });
 }
 
 // CRUD controller definitions
@@ -52,5 +54,4 @@ const PostCategoriesController = {
 	],
 	delete: [PostCategoriesValidation.postCategoryExists, destroy],
 };
-
 export { PostCategoriesController };

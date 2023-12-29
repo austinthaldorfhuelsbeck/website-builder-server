@@ -20,7 +20,13 @@ function isValidPostCategory(req: Request, res: Response, next: NextFunction) {
 		res.locals.validPostCategory = postCategory;
 		return next();
 	}
-	ErrorHandlers.errorHandler({ status: 400, message: errors.join(" ") }, res);
+	ErrorHandlers.errorHandler(
+		{
+			status: 400,
+			message: errors.join(" "),
+		},
+		res,
+	);
 }
 
 async function postCategoryExists(
@@ -33,7 +39,10 @@ async function postCategoryExists(
 	// break with 400 invalid request if no post category id provided
 	if (!id)
 		ErrorHandlers.errorHandler(
-			{ status: 400, message: "Post category ID required." },
+			{
+				status: 400,
+				message: "Post category ID required.",
+			},
 			res,
 		);
 	// find the post category
@@ -44,17 +53,16 @@ async function postCategoryExists(
 	if (postCategory) {
 		res.locals.foundPostCategory = postCategory;
 		return next();
-	} else {
-		ErrorHandlers.errorHandler(
-			{
-				status: 404,
-				message: `Post category ${id} cannot be found.`,
-			},
-			res,
-		);
 	}
+	ErrorHandlers.errorHandler(
+		{
+			status: 404,
+			message: `Post category ${id} cannot be found.`,
+		},
+		res,
+	);
 }
 
+// Module exports
 const PostCategoriesValidation = { isValidPostCategory, postCategoryExists };
-
 export { PostCategoriesValidation };

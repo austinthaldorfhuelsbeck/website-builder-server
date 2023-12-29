@@ -49,6 +49,7 @@ function destroy(id: number): Promise<void> {
 		.del();
 }
 
+// Module exports
 const PostCategoriesService = {
 	list,
 	search,
@@ -57,5 +58,4 @@ const PostCategoriesService = {
 	update,
 	destroy,
 };
-
 export { PostCategoriesService };
