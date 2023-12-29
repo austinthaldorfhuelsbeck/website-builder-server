@@ -3,10 +3,11 @@ import express from "express";
 import cors from "cors";
 
 // Internal modules
+import { PostsRouter } from "./routers/posts.router";
 import { PostCategoriesRouter } from "./routers/post-categories.router";
-import { ErrorHandlers } from "./errors/errorHandler";
 import { PostTopicsRouter } from "./routers/post-topics.router";
 import { EventCategoriesRouter } from "./routers/event-categories.router";
+import { ErrorHandlers } from "./errors/errorHandler";
 
 // App definition
 const app = express();
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 app.use(cors());
 
 // Route handlers
+app.use("/posts", PostsRouter);
 app.use("/post_categories", PostCategoriesRouter);
 app.use("/post_topics", PostTopicsRouter);
 app.use("/event_categories", EventCategoriesRouter);

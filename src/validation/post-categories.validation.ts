@@ -12,6 +12,11 @@ import { IPostCategory } from "../interfaces/objects.interface";
 function isValidPostCategory(req: Request, res: Response, next: NextFunction) {
 	// find post category in request
 	const postCategory: IPostCategory = req.body;
+	// append ID if none provided
+	if (!postCategory.post_category_id) {
+		const now: Date = new Date();
+		postCategory.post_category_id = now.valueOf();
+	}
 	// build error message
 	const errors: (string | undefined)[] = [];
 	if (!postCategory.label) errors.push("Label required.");

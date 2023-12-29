@@ -12,6 +12,11 @@ import { IEventCategory } from "../interfaces/objects.interface";
 function isValidEventCategory(req: Request, res: Response, next: NextFunction) {
 	// find event category in request
 	const eventCategory: IEventCategory = req.body;
+	// append ID if none provided
+	if (!eventCategory.event_category_id) {
+		const now: Date = new Date();
+		eventCategory.event_category_id = now.valueOf();
+	}
 	// build error message
 	const errors: (string | undefined)[] = [];
 	if (!eventCategory.label) errors.push("Label required.");

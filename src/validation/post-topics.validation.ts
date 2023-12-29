@@ -12,6 +12,11 @@ import { IPostTopic } from "../interfaces/objects.interface";
 function isValidPostTopic(req: Request, res: Response, next: NextFunction) {
 	// find post topic in request
 	const postTopic: IPostTopic = req.body;
+	// append ID if none provided
+	if (!postTopic.post_topic_id) {
+		const now: Date = new Date();
+		postTopic.post_topic_id = now.valueOf();
+	}
 	// build error message
 	const errors: (string | undefined)[] = [];
 	if (!postTopic.label) errors.push("Label required.");
