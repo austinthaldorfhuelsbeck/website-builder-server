@@ -44,7 +44,7 @@ async function update(req: Request, res: Response) {
 		res.locals.validPost,
 		res.locals.foundPost.post_id,
 	);
-	res.status(204).json({ data });
+	res.status(200).json({ data });
 }
 async function destroy(req: Request, res: Response) {
 	const data: void = await PostsService.destroy(res.locals.foundPost.post_id);

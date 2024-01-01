@@ -40,7 +40,7 @@ async function update(req: Request, res: Response) {
 		res.locals.validEvent,
 		res.locals.foundEvent.event_id,
 	);
-	res.status(204).json({ data });
+	res.status(200).json({ data });
 }
 async function destroy(req: Request, res: Response) {
 	const data: void = await EventsService.destroy(

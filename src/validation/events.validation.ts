@@ -22,7 +22,7 @@ function isValidEvent(req: Request, res: Response, next: NextFunction) {
 	if (!event.event_category_id)
 		errors.push("What category does this event belong to?");
 	if (!event.date) errors.push("When is this event?");
-	if (!event.title) errors.push("Event title required.");
+	if (!event.label) errors.push("Event label required.");
 	// return result or break with 400 invalid request
 	if (!errors.length) {
 		res.locals.validEvent = event;

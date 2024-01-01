@@ -38,7 +38,7 @@ function update(postTopic: IPostTopic, id: number): Promise<IPostTopic> {
 		.select("*")
 		.where({ "pt.post_topic_id": id })
 		.update(postTopic, "*")
-		.first();
+		.then((categories) => categories[0]);
 }
 function destroy(id: number): Promise<void> {
 	return knex("post_topics as pt").where({ "pt.post_topic_id": id }).del();

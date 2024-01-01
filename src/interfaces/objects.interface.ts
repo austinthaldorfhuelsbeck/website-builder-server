@@ -3,7 +3,7 @@ interface IBasePost {
 	post_topic_id: number;
 	featured: boolean;
 	img: string;
-	title: string;
+	label: string;
 	text: string;
 	content: string;
 	audio: string;
@@ -18,7 +18,7 @@ interface IPost extends IBasePost {
 interface IBaseEvent {
 	event_category_id: number;
 	date: Date;
-	title: string;
+	label: string;
 	text: string;
 	content: string;
 	url: string;

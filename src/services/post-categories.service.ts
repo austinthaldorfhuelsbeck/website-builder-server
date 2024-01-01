@@ -41,7 +41,7 @@ function update(
 		.select("*")
 		.where({ "pc.post_category_id": id })
 		.update(postCategory, "*")
-		.first();
+		.then((categories) => categories[0]);
 }
 function destroy(id: number): Promise<void> {
 	return knex("post_categories as pc")

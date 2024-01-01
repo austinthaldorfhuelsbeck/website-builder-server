@@ -34,7 +34,7 @@ async function update(req: Request, res: Response) {
 		res.locals.validPostTopic,
 		res.locals.foundPostTopic.post_topic_id,
 	);
-	res.status(204).json({ data });
+	res.status(200).json({ data });
 }
 async function destroy(req: Request, res: Response) {
 	const data: void = await PostTopicsService.destroy(

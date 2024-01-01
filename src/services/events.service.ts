@@ -6,18 +6,18 @@ import { IEvent } from "../interfaces/objects.interface";
 
 // List services
 async function list(): Promise<IEvent[]> {
-	return knex("events as e").select("*").orderBy("e.date");
+	return knex("events as e").select("*").orderBy("e.date", "desc");
 }
 async function listUpcoming(): Promise<IEvent[]> {
 	return knex("events as e")
 		.select("*")
-		.where("e.date", ">", `${new Date()}`)
-		.orderBy("e.date");
+		.where("e.date", ">", new Date())
+		.orderBy("e.date", "desc");
 }
 async function search(query: string): Promise<IEvent[]> {
 	return knex("events as e")
 		.where(
-			"e.title",
+			"e.label",
 			"like",
 			`%${query.charAt(0).toUpperCase() + query.slice(1).toLowerCase()}`,
 		)
@@ -26,18 +26,21 @@ async function search(query: string): Promise<IEvent[]> {
 			"like",
 			`%${query.charAt(0).toUpperCase() + query.slice(1).toLowerCase()}`,
 		)
-		.orderBy("e.date");
+		.orderBy("e.date", "desc");
 }
 async function listCategory(id: number): Promise<IEvent[]> {
 	return knex("events as e")
 		.select("*")
 		.where({ "e.event_category_id": id })
-		.orderBy("e.date");
+		.orderBy("e.date", "desc");
 }
 
 // CRUD services
 function create(event: IEvent): Promise<IEvent> {
-	return knex("events").insert(event).returning("*").first();
+	return knex("events")
+		.insert(event)
+		.returning("*")
+		.then((events) => events[0]);
 }
 function read(id: number): Promise<IEvent> {
 	return knex("events as e").select("*").where({ "e.event_id": id }).first();
@@ -47,7 +50,7 @@ function update(event: IEvent, id: number): Promise<IEvent> {
 		.select("*")
 		.where({ "e.event_id": id })
 		.update(event, "*")
-		.first();
+		.then((events) => events[0]);
 }
 function destroy(id: number): Promise<void> {
 	return knex("events as e").where({ "e.event_id": id }).del();

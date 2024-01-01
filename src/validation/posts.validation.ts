@@ -23,7 +23,7 @@ function isValidPost(req: Request, res: Response, next: NextFunction) {
 		errors.push("What category does this post belong to?");
 	if (!post.post_topic_id)
 		errors.push("What topic does this post belong to?");
-	if (!post.title) errors.push("Post title required.");
+	if (!post.label) errors.push("Post label required.");
 	// return result or break with 400 invalid request
 	if (!errors.length) {
 		res.locals.validPost = post;

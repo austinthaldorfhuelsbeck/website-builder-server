@@ -12,7 +12,7 @@ async function up(knex: Knex): Promise<void> {
 			.references("post_topic_id")
 			.inTable("post_topics");
 		table.boolean("featured").defaultTo(false);
-		table.string("title", 255).notNullable();
+		table.string("label", 255).notNullable();
 		table.string("img", 255);
 		table.string("text", 1024);
 		table.string("content", 16384);

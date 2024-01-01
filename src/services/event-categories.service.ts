@@ -28,7 +28,7 @@ function create(EventCategory: IEventCategory): Promise<IEventCategory> {
 	return knex("event_categories")
 		.insert(EventCategory)
 		.returning("*")
-		.first();
+		.then((categories) => categories[0]);
 }
 function read(id: number): Promise<IEventCategory> {
 	return knex("event_categories as pc")
@@ -44,7 +44,7 @@ function update(
 		.select("*")
 		.where({ "pc.event_category_id": id })
 		.update(EventCategory, "*")
-		.first();
+		.then((categories) => categories[0]);
 }
 function destroy(id: number): Promise<void> {
 	return knex("event_categories as pc")
