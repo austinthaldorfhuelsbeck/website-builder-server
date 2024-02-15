@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 	res.contentType("application/json; charset=utf-8");
 	next();
 });
-app.use("*", cors());
+app.use(cors("*"));
 
 // Route handlers
 app.use("/posts", PostsRouter);
