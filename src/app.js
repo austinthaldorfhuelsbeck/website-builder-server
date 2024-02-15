@@ -1,8 +1,5 @@
-// External modules
-import cors from "cors";
 import express from "express";
-
-// Internal modules
+import { setCommonMiddleware } from "./middleware/app.js";
 import ErrorHandlers from "./middleware/errorHandlers.js";
 import EventCategoriesRouter from "./routers/eventCategories.js";
 import EventsRouter from "./routers/events.js";
@@ -12,15 +9,7 @@ import PostsRouter from "./routers/posts.js";
 
 // App definition
 const app = express();
-
-// Middleware
-app.use(express.json());
-app.set("json spaces", 4);
-app.use((req, res, next) => {
-	res.contentType("application/json; charset=utf-8");
-	next();
-});
-app.use(cors());
+setCommonMiddleware(app);
 
 // Route handlers
 app.use("/posts", PostsRouter);
