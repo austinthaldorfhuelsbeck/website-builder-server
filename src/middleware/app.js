@@ -23,7 +23,7 @@ export const setCommonMiddleware = (app) => {
 	app.use(cookieParser());
 	app.use(
 		cors({
-			origin: "*",
+			origin: false,
 		}),
 	);
 };
