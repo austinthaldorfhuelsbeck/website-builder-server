@@ -5,6 +5,7 @@
 	"main": "src/server.js",
 	"type": "module",
 	"scripts": {
+		"build": "webpack",
 		"start": "node .",
 		"dev": "nodemon ."
 	},
@@ -24,6 +25,8 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.1.2",
 		"nodemon": "^3.0.3",
-		"prettier": "^3.1.1"
+		"prettier": "^3.1.1",
+		"webpack": "^5.90.2",
+		"webpack-cli": "^5.1.4"
 	}
 }
