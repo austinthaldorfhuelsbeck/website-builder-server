@@ -8,20 +8,6 @@ import { IPost } from "../interfaces/objects.interface";
 async function list(): Promise<IPost[]> {
 	return knex("posts as p").select("*").orderBy("p.created_at", "desc");
 }
-async function search(query: string): Promise<IPost[]> {
-	return knex("posts as p")
-		.where(
-			"p.label",
-			"like",
-			`%${query.charAt(0).toUpperCase() + query.slice(1).toLowerCase()}`,
-		)
-		.orWhere(
-			"p.text",
-			"like",
-			`%${query.charAt(0).toUpperCase() + query.slice(1).toLowerCase()}`,
-		)
-		.orderBy("p.created_at", "desc");
-}
 async function listCategory(id: number): Promise<IPost[]> {
 	return knex("posts as p")
 		.select("*")
@@ -62,7 +48,6 @@ function destroy(id: number): Promise<void> {
 // Module exports
 const PostsService = {
 	list,
-	search,
 	listCategory,
 	listTopic,
 	create,

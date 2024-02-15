@@ -2,8 +2,8 @@
 import { Request, Response } from "express";
 
 // Internal modules
-import { PostsValidation } from "../validation/posts.validation";
 import { PostsService } from "../services/posts.service";
+import { PostsValidation } from "../validation/posts.validation";
 
 // Data models
 import { IPost } from "../interfaces/objects.interface";
@@ -14,9 +14,7 @@ import { IPost } from "../interfaces/objects.interface";
 async function list(req: Request, res: Response) {
 	const query: any = req.query;
 	let data: (IPost | undefined)[] = [];
-	if (query.search) {
-		data = await PostsService.search(query.search.toString());
-	} else if (query.topic) {
+	if (query.topic) {
 		data = await PostsService.listTopic(query.topic.toString());
 	} else if (query.category) {
 		data = await PostsService.listCategory(query.category.toString());

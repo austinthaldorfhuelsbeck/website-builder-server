@@ -31,25 +31,23 @@ function create(EventCategory: IEventCategory): Promise<IEventCategory> {
 		.then((categories) => categories[0]);
 }
 function read(id: number): Promise<IEventCategory> {
-	return knex("event_categories as pc")
+	return knex("event_categories")
 		.select("*")
-		.where({ "pc.event_category_id": id })
+		.where({ event_category_id: id })
 		.first();
 }
 function update(
 	EventCategory: IEventCategory,
 	id: number,
 ): Promise<IEventCategory> {
-	return knex("event_categories as pc")
+	return knex("event_categories")
 		.select("*")
-		.where({ "pc.event_category_id": id })
+		.where({ event_category_id: id })
 		.update(EventCategory, "*")
 		.then((categories) => categories[0]);
 }
 function destroy(id: number): Promise<void> {
-	return knex("event_categories as pc")
-		.where({ "pc.event_category_id": id })
-		.del();
+	return knex("event_categories").where({ event_category_id: id }).del();
 }
 
 // Module exports
