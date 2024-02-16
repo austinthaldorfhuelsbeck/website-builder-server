@@ -50,7 +50,7 @@ const postCategoryExists = async (req, res, next) => {
 	ErrorHandlers.errorHandler(
 		{
 			status: 404,
-			message: `Post category ${id} cannot be found.`,
+			message: `Post category ${post_category_id} cannot be found.`,
 		},
 		res,
 	);

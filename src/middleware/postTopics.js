@@ -48,7 +48,7 @@ const postTopicExists = async (req, res, next) => {
 	ErrorHandlers.errorHandler(
 		{
 			status: 404,
-			message: `Post topic ${id} cannot be found.`,
+			message: `Post topic ${post_topic_id} cannot be found.`,
 		},
 		res,
 	);

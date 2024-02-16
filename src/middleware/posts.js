@@ -30,9 +30,9 @@ const isValidPost = (req, res, next) => {
 
 const postExists = async (req, res, next) => {
 	// find post id in request
-	const id = req.params.post_id;
+	const { post_id } = req.params;
 	// break with 400 invalid request if no post id provided
-	if (!id)
+	if (!post_id)
 		ErrorHandlers.errorHandler(
 			{
 				status: 400,
@@ -41,7 +41,7 @@ const postExists = async (req, res, next) => {
 			res,
 		);
 	// find the post
-	const post = await PostsService.read(parseInt(id));
+	const post = await PostsService.read(parseInt(post_id));
 	// return result or break with 404 not found
 	if (post) {
 		res.locals.foundPost = post;
@@ -50,7 +50,7 @@ const postExists = async (req, res, next) => {
 	ErrorHandlers.errorHandler(
 		{
 			status: 404,
-			message: `Post ${id} cannot be found.`,
+			message: `Post ${post_id} cannot be found.`,
 		},
 		res,
 	);

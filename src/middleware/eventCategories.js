@@ -50,7 +50,7 @@ const eventCategoryExists = async (req, res, next) => {
 	ErrorHandlers.errorHandler(
 		{
 			status: 404,
-			message: `Event category ${id} cannot be found.`,
+			message: `Event category ${event_category_id} cannot be found.`,
 		},
 		res,
 	);

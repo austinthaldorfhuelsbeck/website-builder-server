@@ -50,7 +50,7 @@ const eventExists = async (req, res, next) => {
 	ErrorHandlers.errorHandler(
 		{
 			status: 404,
-			message: `Event ${id} cannot be found.`,
+			message: `Event ${event_id} cannot be found.`,
 		},
 		res,
 	);
