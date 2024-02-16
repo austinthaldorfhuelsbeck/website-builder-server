@@ -29,7 +29,10 @@ const listCategory = async (id) =>
 		.orderBy("date", "desc");
 
 const create = async (event) =>
-	knex("events").insert(event).returning("*").first();
+	knex("events")
+		.insert(event)
+		.returning("*")
+		.then((newEvents) => newEvents[0]);
 
 const read = async (id) =>
 	knex("events").select("*").where({ event_id: id }).first();
@@ -39,7 +42,7 @@ const update = async (event, id) =>
 		.select("*")
 		.where({ event_id: id })
 		.update(event, "*")
-		.first();
+		.then((updatedEvents) => updatedEvents[0]);
 
 const destroy = async (id) => knex("events").where({ event_id: id }).del();
 

@@ -17,7 +17,10 @@ const search = async (query) =>
 		.orderBy("updated_at");
 
 const create = async (postTopic) =>
-	knex("post_topics").insert(postTopic).returning("*").first();
+	knex("post_topics")
+		.insert(postTopic)
+		.returning("*")
+		.then((newTopics) => newTopics[0]);
 
 const read = async (id) =>
 	knex("post_topics").select("*").where({ post_topic_id: id }).first();
@@ -27,7 +30,7 @@ const update = async (postTopic, id) =>
 		.select("*")
 		.where({ post_topic_id: id })
 		.update(postTopic, "*")
-		.first();
+		.then((updatedTopics) => updatedTopics[0]);
 
 const destroy = async (id) =>
 	knex("post_topics").where({ post_topic_id: id }).del();

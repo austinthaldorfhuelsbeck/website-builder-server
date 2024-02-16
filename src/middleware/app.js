@@ -20,6 +20,5 @@ export const setCommonMiddleware = (app) => {
 		);
 		next();
 	});
-	app.use(cookieParser());
 	app.use(cors());
 };

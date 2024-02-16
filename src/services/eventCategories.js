@@ -17,7 +17,10 @@ const search = async (query) =>
 		.orderBy(updated_at);
 
 const create = async (eventCategory) =>
-	knex("event_categories").insert(eventCategory).returning("*").first();
+	knex("event_categories")
+		.insert(eventCategory)
+		.returning("*")
+		.then((newCategories) => newCategories[0]);
 
 const read = async (id) =>
 	knex("event_categories")
@@ -30,7 +33,7 @@ const update = async (eventCategory, id) =>
 		.select("*")
 		.where({ event_category_id: id })
 		.update(eventCategory, "*")
-		.first();
+		.then((updatedCategories) => updatedCategories[0]);
 
 const destroy = async (id) =>
 	knex("event_categories").where({ event_category_id: id }).del();

@@ -17,7 +17,10 @@ const search = async (query) =>
 		.orderBy(updated_at);
 
 const create = async (postCategory) =>
-	knex("post_categories").insert(postCategory).returning("*").first();
+	knex("post_categories")
+		.insert(postCategory)
+		.returning("*")
+		.then((newCategories) => newCategories[0]);
 
 const read = async (id) =>
 	knex("post_categories").select("*").where({ post_category_id: id }).first();
@@ -27,7 +30,7 @@ const update = async (postCategory, id) =>
 		.select("*")
 		.where({ post_category_id: id })
 		.update(postCategory, "*")
-		.first();
+		.then((updatedCategories) => updatedCategories[0]);
 
 const destroy = async (id) =>
 	knex("post_categories").where({ post_category_id: id }).del();
