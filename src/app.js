@@ -12,11 +12,12 @@ const app = express();
 setCommonMiddleware(app);
 
 // Route handlers
-app.use("/posts", PostsRouter);
-app.use("/events", EventsRouter);
-app.use("/post_categories", PostCategoriesRouter);
-app.use("/post_topics", PostTopicsRouter);
-app.use("/event_categories", EventCategoriesRouter);
+const apiBase = "/api/v1";
+app.use(`${apiBase}/posts`, PostsRouter);
+app.use(`${apiBase}/events`, EventsRouter);
+app.use(`${apiBase}/post_categories`, PostCategoriesRouter);
+app.use(`${apiBase}/post_topics`, PostTopicsRouter);
+app.use(`${apiBase}/event_categories`, EventCategoriesRouter);
 
 // Error handlers
 app.use(ErrorHandlers.notFound);
